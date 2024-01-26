@@ -54,9 +54,7 @@ $news = mysqli_query($con, "select * from news");
                 <p></p>
             </div>
         </div>
-
     </div>
-    
     <nav class = "navigation">
         <ul>
             <?php
@@ -82,7 +80,6 @@ $news = mysqli_query($con, "select * from news");
                     ?>
                 </div>
             </div>
-
         </section> 
     </main>
 </body>

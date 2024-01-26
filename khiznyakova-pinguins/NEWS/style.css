@@ -1,0 +1,263 @@
+* {
+    margin: auto 0;
+    padding: 0;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    align-items: center;
+    color: #4B5157;
+
+}
+
+.burger_menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.search-input input{
+    width: 800px;
+    height: 40px;
+}
+
+.sign-in {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.name_head {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #262D33;
+}
+
+.name_head h1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #262D33;
+    width: 100%;
+    margin-left: 15%;
+}
+
+.name_head .date p{
+    display: flex;
+    width: 100%;
+    
+    margin-right: 190px;
+    align-items: center;
+}
+
+
+.navigation ul{
+    width: 100%;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    background-color: #262D33;
+}
+
+.navigation li {
+    color: #ffffff;
+    list-style-type: none;
+  
+}
+
+.navigation li a {
+      text-decoration: none;
+      color: #ffffff;
+      font-size: 17px;
+}
+
+/* стилизация формы */
+.News {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.NewsForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 30%;
+    height: 600px;
+}
+
+.NewsForm label {
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    font-size: 25px;
+    color: #262D33;
+    font-family: 'Lato', sans-serif;
+}
+
+#PostName {
+    width: 600px;
+    height: 40px;
+    font-family: 'Lato', sans-serif;
+}
+
+#PostText {
+    width: 600px;
+    height: 180px;
+    font-family: 'Lato', sans-serif;
+}
+
+#button {
+    width: 150px;
+    height: 30px;
+    border: 1px solid  #262D33;
+    background-color: #ffffff;
+    color: #262D33;
+    font-family: 'Lato', sans-serif;
+}
+
+#button:hover {
+    width: 150px;
+    height: 30px;
+    border: 1px solid  #262D33;
+    background-color:#262D33;
+    color: #ffffff;
+    font-family: 'Lato', sans-serif;
+}
+
+.Category {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.Category p {
+    color: #262D33;
+    font-family: 'Lato', sans-serif;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 30px;
+}
+
+#Category {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 110%;
+    color: #262D33;
+    margin-top: 30px;
+    height: 30px;
+
+}
+
+a.admin {
+    text-decoration: none;
+    color: #262D33;
+}
+
+/* админ-панел */
+
+main {
+    width: 100%;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-top: 50px;
+}
+
+.container {
+    width: 500px;
+    height: 600px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    border-radius: 20px;
+}
+
+.container img {
+    width: 350px;
+    border-radius: 5%;
+}
+
+.card {
+    width: 400px;
+    height: 400px;
+    background-color: #262D33;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    border-radius: 5%;
+}
+
+.c_title {
+    width: 350px;
+    height: 40px;
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Lato', sans-serif;
+    font-size: 25px;
+}
+
+.card p {
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.news {
+    width: 400px;
+    height: 300px;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    background-color: #262D33;
+    border-radius: 20px;
+    flex-wrap: wrap;
+}
+
+.news h1 {
+    width: 100%;
+    color: aliceblue;
+}
+
+.container_news a{
+    width: 100%;
+    color: aliceblue;
+    text-decoration: none;
+}
+
+.container_news li {
+    list-style-type: none;
+    text-decoration: none;
+    font-family: 'Lato', sans-serif;
+    font-size: 20px;
+    padding-top: 10px;
+}
