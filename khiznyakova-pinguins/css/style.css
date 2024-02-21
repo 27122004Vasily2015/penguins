@@ -195,7 +195,7 @@ main {
 }
 
 .container img {
-    width: 350px;
+    width: 70px;
     border-radius: 5%;
 }
 
@@ -278,33 +278,4 @@ main {
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
- }
-
- .post_img {
-    width: 450px;
-    height: 200px;
-    background-repeat: no-repeat;
-    background-size: contain;
-
- }
-
- a img.icon {
-    width: 50px;
-    height: 50px;
- }
-
-ul li{
-    list-style-type: none;
- }
- .list-group-horizontal {
-    width: 300px;
-    height: 30px;
-    display: flex;
-    justify-content: center;
- }
-
- .list-group-item a img{
-    width: 30px;
-    height: 30px;
-    margin-left: 10px;
  }
