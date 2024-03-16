@@ -1,7 +1,10 @@
 <?php 
 include "connect.php"; // выражение include включает и выполняет указанный файл 
 $query_get_category = "select * from categories"; 
- 
+
+$username = isset($_SESSION["user_id"]) ? mysqli_fetch_assoc(mysqli_query($con, 'SELECT username FROM users WHERE user_id =' . $_SESSION["user_id"]))["username"] : false;
+
+session_start();
 // $id_cat = isset($_GET['category_id'])?$_GET['category_id']:false;  
  
 // $get_cat = mysqli_query($con, "select * from news where category_id = "); 
@@ -18,6 +21,8 @@ $categories = mysqli_fetch_all(mysqli_query($con, $query_get_category)); //по�
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"> 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
     integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -29,7 +34,7 @@ $categories = mysqli_fetch_all(mysqli_query($con, $query_get_category)); //по�
 <header>
     <a href="reg.php">
         <div class="burger_menu">
-        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="14" viewBox="0 0 18 14" fill="none">
+        <svg xmlns="http://www.w3.org/2000/svg" width="18" height="14" viewBox="0 0 18 14"  fill="none">
         <path fill-rule="evenodd" clip-rule="evenodd" d="M18 14H0V12H18V14ZM12 8H0V6H12V8ZM0 2V0H18V2H0Z" fill="#BCBFC2"/>
         </svg>
         <h4>Sections</h4> 
@@ -45,6 +50,7 @@ $categories = mysqli_fetch_all(mysqli_query($con, $query_get_category)); //по�
     <path fill-rule="evenodd" clip-rule="evenodd" d="M18 16.6316C16.3675 18.2105 13.7008 19 10 19C6.29917 19 3.63251 18.2105 2 16.6316C2 13.3481 3.90591 10.9832 6.70588 10C7.60059 10.4169 8.59455 11 10 11C11.4054 11 12.3311 10.3926 13.2941 10C16.0575 10.9965 18 13.3748 18 16.6316ZM10 9C7.79086 9 6 7.20914 6 5C6 2.79086 7.79086 1 10 1C12.2091 1 14 2.79086 14 5C14 7.20914 12.2091 9 10 9Z" fill="#BCBFC2"/>
     </svg>
         <p><a href="admin/index.php" class = 'admin'>Войти</a></p>
+        <?=(!isset($_SESSION["user_id"]))?"Вход": "Выход"?>
     </div>
 </header>
 

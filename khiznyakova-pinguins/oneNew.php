@@ -1,7 +1,11 @@
 <?php 
+
+//добавить форму для создания комментариев только для авторизованных пользователей
 include "connect.php";
 
 $new_id = isset($_GET["new"])? $_GET["new"]:false;
+
+if ($new_id){
 
 $query_getNew = "SELECT news.*, categories.name FROM news inner join categories on news.category_id = categories.category_id WHERE news_id = $new_id";
 
@@ -28,6 +32,13 @@ $m_text = $month[substr($date,3,2)];
 
 $publish_date = substr($date,0,2)." ". $m_text." ". substr($date,6);
 
+$comments_result = mysqli_query($con, "SELECT `comment_text`, `comment_date`, `username` FROM `comments` INNER JOIN `users` ON users.user_id = comments.user_id WHERE news_id = $new_id"); 
+$comments = mysqli_fetch_all($comments_result);
+// $commentator = mysqli_query($con, "SELECT `username` FROM `users` WHERE user_id = $");
+}
+else {
+    header("Location: /");
+}
 ?>
 
 <!DOCTYPE html>
@@ -38,9 +49,11 @@ $publish_date = substr($date,0,2)." ". $m_text." ". substr($date,6);
     <title>Document</title>
 </head>
 <body>
+
+<div class="container">
     <?php
     
-    $new_id = $new['news_id']; 
+    $new_id = $new_info['news_id']; 
     echo "<div class='img'><img src='images/news/" . $new_info['image']. "'>";
     echo "<h1>". $new_info['title']. "</h1>";
     echo "<p>". $new_info['content']. "</p>";
@@ -48,5 +61,32 @@ $publish_date = substr($date,0,2)." ". $m_text." ". substr($date,6);
     echo "</div>";
      
     ?>
+<h3 class="mb-3">Комментарии</h3>
+<?php if ($new_id){ ?>
+    <form action="comment-DB.php" method="POST">
+        <label for="cmment_text" class="form_label">Напишите комментарий</label>
+        <input type="text" id="comment_text" name="comment-text">
+        <button type="submit">Отправить</button>
+    </form>
+    
+<?php } ?>
+
+<?php if (mysqli_num_rows($comments_result)) {
+    foreach($comments as $comment) {?>
+        <div class="card_text">
+            <div class="card_header">
+                
+            </div>
+            <div class="card_body">
+                <?=$comment[2]?> <br>
+                <?=$comment[1]?> <br>
+                <?=$comment[0]?>
+            </div>
+        </div>
+    <?php } 
+} else 
+    echo "<i>Комментариев пока нет</i>";
+?> 
+</div>
 </body>
 </html>

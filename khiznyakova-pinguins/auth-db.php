@@ -1,7 +1,9 @@
 <?php
+session_start();
 include "connect.php";
 $login = strip_tags(trim($_POST['login']));
 $pass = strip_tags(trim($_POST['pass']));
+
 
 $result = "SELECT *FROM `users` WHERE `username`='$login' and `password` = '$pass'"; 
 $result1 = mysqli_query($con, $result); 
@@ -16,7 +18,7 @@ else if(count($user) == 1){
 	echo "Логин или пароль введены неверно";
 	exit();
 } else {
-	setcookie('user', $user['username'], time() + 3600, "/");
+	$_SESSION['user'] = $user['user_id'];
 
 	header('Location: page.php');
 }

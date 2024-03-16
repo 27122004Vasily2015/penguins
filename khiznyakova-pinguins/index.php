@@ -17,7 +17,16 @@ $params = "";
 
 $query = "SELECT * FROM `news`";
 
-$search = "";
+$searching = "";
+
+$paginate_count = 3;
+$page = isset($_GET['page']) ? $_GET['page'] : 1;
+$offset = $page * $paginate_count - $paginate_count; //offset m 
+
+
+
+
+$count_news = mysqli_num_rows(mysqli_query($con, $query));
 
 if($id_cat){
     $query = "SELECT * FROM `news` ORDER BY `category_id` = $id_cat";
@@ -32,18 +41,41 @@ if($sort && $id_cat){
 }
 
 if($searching){
-    $query = "SELECT * FROM `news` WHERE `title` LIKE '%$searching%' OR `content` LIKE '%$searching%'";
+    $query = "SELECT * FROM `news` WHERE `title` LIKE '%$searching%' OR `content` LIKE '%$searching%'"; 
 }
 
-$news = mysqli_query($con, $query);
-
+$news =  mysqli_query($con, $query . " LIMIT $paginate_count OFFSET $offset");
 ?>
-
+  <div class="num">
+    <nav aria-label="Page navigation example"> 
+  <ul class="pagination"> 
+    <li class="page-item"> 
+      <a class="page-link" href="#" aria-label="Previous"> 
+        <span aria-hidden="true">&laquo;</span> 
+      </a> 
+    </li> 
+     
+    <?php  
+    for($i=1; $i <= ceil($count_news/$paginate_count); $i++){?> 
+        <li class="page-item"><a class="page-link" href="?page=<?=$i?><?=$id_cat?'&category_id'.$id_cat:''?><?=$sort?'&sort='.$sort:''?>"> 
+            <?=$i?> 
+        </a></li> 
+     <?php }?> 
+ 
+    <li class="page-item"> 
+      <a class="page-link" href="#" aria-label="Next"> 
+        <span aria-hidden="true">&raquo;</span> 
+      </a> 
+    </li> 
+  </ul> 
+</nav> 
+</div>
     <main>
     
         
         <section class = "last-news">
             <section class="sort">
+            <input type="hidden" name="page" value="<?=$page?>"> 
                 <ul class="list-group list-group-horizontal mt-5 mb-3">
                     Сортировка по дате
                     <li class="list-group-item">
@@ -80,5 +112,6 @@ $news = mysqli_query($con, $query);
             </div>
         </section> 
     </main>
-</body>
+  
+</body> 
 </html>

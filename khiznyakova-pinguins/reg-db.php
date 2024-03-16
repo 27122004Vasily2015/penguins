@@ -7,11 +7,15 @@ if(mb_strlen($login) < 5 || mb_strlen($login) > 100){
 	exit();
 }
 require "connect.php";
-$result1 = mysqli_query($con,"SELECT * FROM `users` WHERE `username` = '$login' and `password` = '$pass'");
+$result1 = mysqli_query($con,"SELECT * FROM `users` WHERE `username` = '$login'");
 $user1 = mysqli_fetch_assoc($result1); // Конвертируем в массив
 if(!empty($user1)){
 	echo "Данный логин уже используется!";
 	exit();
 }
-mysqli_query($con, "INSERT INTO `users` (`username`, `password`, `email`) VALUES ('$login', '$pass', '$name')");
+else {
+	mysqli_query($con, "INSERT INTO `users` (`username`, `password`, `email`) VALUES ('$login', '$pass', '$name')");
 // mysql_query($con,"INSERT INTO `users` (`username`, `password`)VALUES('$login', '$pass')");
+	$_SESSION["user_id"] = mysqli_insert_id($con);
+	header('Location: page.php');
+}
