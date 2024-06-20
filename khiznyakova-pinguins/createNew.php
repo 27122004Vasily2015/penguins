@@ -1,51 +1,34 @@
-<?php
-
-include "connect.php";
-
-$queery_category = "SELECT * FROM categories";
-
-$categories = mysqli_fetch_all(mysqli_query($con, $queery_category));
-
-include "header.php";
-?>
-
-    <section class="addNews">
-        <h1>Добавить новость</h1>
-
-        <form action="createNewValid.php" method="POST" enctype="multipart/form-data" class="newsForm">
-            <label for="newImage">Загрузите изображение новости:</label>
-            <input type="file" id="newImage" name="newImage" accept="image/*">
-
-            <br>
-
-            <label for="newTitle">Заголовок новости:</label>
-            <input type="text" id="newTitle" name="newTitle">
-
-            <br>
-
-            <label for="newContent">Текст новости:</label>
-            <input type="text" id="newContent" name="newContent">
-
-            <br>
-            <label for="newCategory">Категории:</label>
-            <select name="newCategory" id="newCategory">
-              <?php
-                foreach ($categories as $category)  {
-                    $id_cat = $category[0];
-                    $name = $category[1];
-                    echo "<option value='$id_cat'>$name</option>";
-                }
-              
-              ?>
-            </select>
-
-            <br>
-
-            <input type="submit" value="Отправить" class="submit-btn">
-
-        </form>
-    </section>
     <?php
+    include "connect.php";
+    include "header.php";
+    $query_category = "SELECT * FROM categories";
+    $categories = mysqli_fetch_all(mysqli_query($con, $query_category));
     ?>
-</body>
-</html>
+
+    <form action="createNewValid.php" method="post" enctype="multipart/form-data">
+        <label for="newsCat">Категории:</label>
+        <select id="newsCat" name="newsCat">
+            <?php
+            foreach ($categories as $cat) {
+                $id_cat = $cat[0];
+                $name = $cat[1];
+
+                echo "<option value ='$id_cat'> $name </option>";
+            }
+            ?>
+
+        </select><br><br>
+        <label for="newTitle">Заголовок:</label>
+        <input type="text" id="newTitle" name="newTitle" class="zagolovok"><br><br>
+
+        <label for="newsText">Текст:</label><br>
+        <input type="text" id="newsText" name="newsText" rows="4" cols="50" class="zagolovok" placeholder="Введите свою почту"></textarea><br><br>
+
+        <label for="newsImg">Изображение:</label>
+        <input type="file" id="newsImg" name="newsImg" accept="image/*"><br><br>
+
+        <input type="submit" value="Отправить" class="submit-button">
+    
+    </form>
+    </body>
+    </html>
